@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Samiksha Lokhande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --orange: #FF6B35;
+      --orange-light: #FF8A65;
+      --bg: #FAFAFA;
+      --white: #fff;
+      --grey: #f3f3f3;
+      --text: #1a1a1a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .navbar {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(250,250,250,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000; padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 2rem;
+    }
+    .nav-logo { font-size: 1.5rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a {
+      text-decoration: none; color: #666; font-weight: 500;
+      transition: all 0.3s; position: relative; padding: 0.5rem 0;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+    .nav-links a::after {
+      content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .main-content { margin-top: 80px; padding: 4rem 2rem; padding-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .section { margin-bottom: 4rem; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .slide-in { opacity: 0; transform: translateX(-40px); transition: all 0.8s; }
+    .slide-in.visible { opacity: 1; transform: translateX(0); }
+    .hero {
+      display: grid; grid-template-columns: 120px 1fr; gap: 2rem; align-items: center;
+      background: var(--white); border-radius: 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+      padding: 2.5rem 2rem; margin-bottom: 3rem;
+      animation: fadeInUp 1s ease;
+    }
+    .hero-portrait {
+      width: 120px; height: 120px; border-radius: 50%; background: var(--grey);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(255,107,53,0.08);
+    }
+    .hero-portrait img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--text) 0%, var(--orange) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem; color: #666; font-weight: 500;
+    }
+    .section-title {
+      font-size: 1.5rem; font-weight: 700; color: var(--orange);
+      margin-bottom: 1.2rem; letter-spacing: 0.5px;
+      text-align: center;
+    }
+    .how-started {
+      background: var(--white); border-radius: 14px; padding: 2rem;
+      box-shadow: 0 2px 12px rgba(255,107,53,0.05);
+      font-size: 1.1rem; color: #444;
+    }
+    .how-think-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .think-item {
+      background: var(--grey); border-radius: 12px; padding: 1.5rem 1.2rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      box-shadow: 0 2px 12px rgba(255,107,53,0.04);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    /* .think-item:hover {
+      box-shadow: 0 6px 24px rgba(255,107,53,0.12);
+      transform: translateY(-4px) scale(1.03);
+    } */
+    .think-icon {
+      font-size: 2rem; color: var(--orange);
+      flex-shrink: 0;
+    }
+    .think-text { font-size: 1.05rem; color: #333; }
+    .beyond-design-list {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.2rem;
+    }
+    .beyond-item {
+      background: var(--white); border-radius: 12px; padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      box-shadow: 0 2px 12px rgba(255,107,53,0.04);
+      font-size: 1.05rem; color: #333;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    /* .beyond-item:hover {
+      box-shadow: 0 6px 24px rgba(255,107,53,0.12);
+      transform: translateY(-4px) scale(1.03);
+    } */
+    .beyond-icon { font-size: 1.5rem; color: var(--orange); }
+    /* Footer */
+    .footer {
+      background: #1a1a1a; color: white; text-align: center; padding: 3rem 2rem;
+      /* margin-top: 4rem; */
+    }
+    .footer-content { max-width: 600px; margin: 0 auto; }
+    .footer h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .footer p { color: #ccc; margin-bottom: 2rem; }
+    .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
+    .social-links a { color: white; font-size: 1.5rem; transition: color 0.3s; }
+    .social-links a:hover { color: var(--orange); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--orange); }
+    @media (max-width: 700px) {
+      .main-content { padding: 2rem 0.5rem; }
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+      .hero-portrait { margin: 0 auto; }
+      .how-think-list { grid-template-columns: 1fr; }
+      .beyond-design-list { flex-direction: column; }
+    }
+    /* Custom Cursor Styles */
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: #ff6b35;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.1s ease;
+      }
+
+      .cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #ff6b35;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+      }
+
+      .cursor-trail {
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 107, 53, 0.6);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9997;
+        transition: all 0.1s ease;
+      }
+
+      /* Hover Effects */
+      .cursor-dot.hover {
+        transform: scale(1.5);
+        background: #ff8a65;
+      }
+
+      .cursor-ring.hover {
+        transform: scale(1.5);
+        border-color: #ff8a65;
+        opacity: 0.9;
+      }
+
+      /* Click Animation */
+      .cursor-dot.click {
+        transform: scale(0.8);
+        background: #e55a2b;
+      }
+
+      .cursor-ring.click {
+        transform: scale(0.8);
+        border-color: #e55a2b;
+      }
+
+      /* Hide default cursor on desktop */
+      body {
+        cursor: none;
+      }
+
+      /* Show default cursor on mobile */
+      @media (max-width: 768px) {
+        body {
+          cursor: auto;
+        }
+
+        .cursor-dot,
+        .cursor-ring,
+        .cursor-trail {
+          display: none;
+        }
+      }
+    </style>
+    <script>
+      // Custom Cursor Animation
+      class CustomCursor {
+        constructor() {
+          this.cursorDot = document.querySelector(".cursor-dot");
+          this.cursorRing = document.querySelector(".cursor-ring");
+          this.cursorTrail = document.querySelector(".cursor-trail");
+
+          this.mouseX = 0;
+          this.mouseY = 0;
+          this.ringX = 0;
+          this.ringY = 0;
+          this.trailX = 0;
+          this.trailY = 0;
+
+          this.init();
+        }
+
+        init() {
+          if (window.innerWidth <= 768) {
+            document.body.style.cursor = "auto";
+            this.cursorDot.style.display = "none";
+            this.cursorRing.style.display = "none";
+            this.cursorTrail.style.display = "none";
+            return;
+          }
+
+          this.bindEvents();
+          this.animate();
+        }
+
+        bindEvents() {
+          document.addEventListener("mousemove", (e) => {
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+          });
+
+          document.addEventListener("mouseenter", () => {
+            this.cursorDot.style.opacity = "1";
+            this.cursorRing.style.opacity = "0.7";
+          });
+
+          document.addEventListener("mouseleave", () => {
+            this.cursorDot.style.opacity = "0";
+            this.cursorRing.style.opacity = "0";
+          });
+
+          document.addEventListener("mousedown", () => {
+            this.cursorDot.classList.add("click");
+            this.cursorRing.classList.add("click");
+          });
+
+          document.addEventListener("mouseup", () => {
+            this.cursorDot.classList.remove("click");
+            this.cursorRing.classList.remove("click");
+          });
+
+          const interactiveElements = document.querySelectorAll(
+            "a, button, .btn, .project-card, .nav-links a"
+          );
+
+          interactiveElements.forEach((element) => {
+            element.addEventListener("mouseenter", () => {
+              this.cursorDot.classList.add("hover");
+              this.cursorRing.classList.add("hover");
+            });
+
+            element.addEventListener("mouseleave", () => {
+              this.cursorDot.classList.remove("hover");
+              this.cursorRing.classList.remove("hover");
+            });
+          });
+        }
+
+        animate() {
+          this.ringX += (this.mouseX - this.ringX) * 0.1;
+          this.ringY += (this.mouseY - this.ringY) * 0.1;
+
+          this.trailX += (this.mouseX - this.trailX) * 0.05;
+          this.trailY += (this.mouseY - this.trailY) * 0.05;
+
+          this.cursorDot.style.left = this.mouseX + "px";
+          this.cursorDot.style.top = this.mouseY + "px";
+
+          this.cursorRing.style.left = this.ringX + "px";
+          this.cursorRing.style.top = this.ringY + "px";
+
+          this.cursorTrail.style.left = this.trailX + "px";
+          this.cursorTrail.style.top = this.trailY + "px";
+
+          if (
+            Math.abs(this.mouseX - this.trailX) > 1 ||
+            Math.abs(this.mouseY - this.trailY) > 1
+          ) {
+            this.cursorTrail.style.opacity = "0.6";
+          } else {
+            this.cursorTrail.style.opacity = "0";
+          }
+
+          requestAnimationFrame(() => this.animate());
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        new CustomCursor();
+      });
+    </script>
+</head>
+<body>
+  <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-trail"></div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="Home.html" class="nav-logo">SL</a>
+      <ul class="nav-links">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Aboutme.html" class="active">About</a></li>
+        <li><a href="Project page.html">Work</a></li>
+        <li><a href="contactme.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="hero-portrait">
+        <img src="WhatsApp Image 2025-07-09 at 10.03.00.jpeg" alt="Samiksha Lokhande Portrait" />
+      </div>
+      <div class="hero-content">
+        <h1>Samiksha Lokhande</h1>
+        <p>Designing clarity into complexity with empathy, structure, and intent.</p>
+      </div>
+    </section>
+
+    <!-- How I Think -->
+    <section class="section fade-in">
+      <div class="section-title">How I Think</div>
+      <div class="how-think-list">
+        <div class="think-item">
+          <span class="think-icon"><i class="fas fa-layer-group"></i></span>
+          <span class="think-text"><strong>Structured:</strong> I break down complexity into clear, actionable steps and systems.</span>
+        </div>
+        <div class="think-item">
+          <span class="think-icon"><i class="fas fa-user-friends"></i></span>
+          <span class="think-text"><strong>Human-centered:</strong> I design for real people, always considering context, needs, and emotions.</span>
+        </div>
+        <div class="think-item">
+          <span class="think-icon"><i class="fas fa-bullseye"></i></span>
+          <span class="think-text"><strong>Outcome-oriented:</strong> I focus on results that create measurable impact for users and businesses.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beyond Design -->
+    <section class="section fade-in" style="margin-bottom: 2rem;">
+      <div class="section-title">Beyond Design</div>
+      <div class="beyond-design-list">
+        <div class="beyond-item">
+          <span class="beyond-icon"><i class="fa-solid fa-pen"></i></span>
+          <span>Doodle often, paint occasionally</span>
+        </div>
+        <div class="beyond-item">
+          <span class="beyond-icon"><i class="fa-solid fa-music"></i></span>
+          <span>Flute Player (decently, on lucky days)</span>
+        </div>
+        <div class="beyond-item">
+          <span class="beyond-icon"><i class="fa-solid fa-leaf"></i></span>
+          <span>Planting things, one pot at a time</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3>Let's work together</h3>
+      <p>I'm always interested in new opportunities and exciting projects. Let's discuss how we can create something amazing together.</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/samiksha-lokhande" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a onclick="copyEmail()" style="cursor: pointer;" title="Click to copy email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script>
+  function copyEmail() {
+    navigator.clipboard.writeText("samikshaalokhande@gmail.com");
+    alert("Email copied to clipboard!");
+  }
+</script>
+  <script>
+    // Fade/slide in on scroll
+    function revealOnScroll() {
+      document.querySelectorAll('.fade-in, .slide-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('DOMContentLoaded', revealOnScroll);
+  </script>
+</body>
+</html>

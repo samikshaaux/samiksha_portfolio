@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work in Progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #181818;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* Back Button (consistent with case study) */
+    .back-button {
+      position: fixed;
+      top: 100px;
+      left: 2rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #FF6B35;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      background: rgba(255, 107, 53, 0.1);
+      font-size: 1rem;
+    }
+    .back-button:hover {
+      background: rgba(255, 107, 53, 0.2);
+      transform: translateX(-5px);
+    }
+    .wip-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      z-index: 1;
+    }
+    .wip-icon {
+      font-size: 5rem;
+      margin-bottom: 24px;
+      color: #ff8800;
+      animation: bounce 1.2s infinite alternate cubic-bezier(.68,-0.55,.27,1.55);
+      filter: drop-shadow(0 0 16px #ff8800aa);
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-18px) scale(1.08); }
+    }
+    .wip-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      color: #ff8800;
+      animation: fadeIn 1.2s 0.2s both;
+    }
+    .wip-desc {
+      font-size: 1.2rem;
+      color: #fff;
+      opacity: 0.85;
+      margin-bottom: 32px;
+      animation: fadeIn 1.2s 0.5s both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .progress-bar {
+      width: 220px;
+      height: 10px;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0 auto 24px auto;
+      box-shadow: 0 2px 12px 0 #ff880033;
+      animation: fadeIn 1.2s 0.7s both;
+    }
+    .progress {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #ff8800 60%, #ffb347 100%);
+      border-radius: 8px;
+      animation: progressAnim 2.5s 1s forwards cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes progressAnim {
+      from { width: 0; }
+      to { width: 80%; }
+    }
+    .glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #ff880033 0%, #181818 80%);
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(32px);
+      animation: pulse 2.5s infinite alternate;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    @media (max-width: 600px) {
+      .wip-title { font-size: 1.5rem; }
+      .wip-icon { font-size: 3rem; }
+      .progress-bar { width: 120px; }
+      .back-button { top: 80px; left: 1rem; font-size: 0.9rem; padding: 0.4rem 0.8rem; }
+      .glow { width: 200px; height: 200px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button (consistent with case study) -->
+  <a href="javascript:history.back()" class="back-button">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M12.5 15L7.5 10L12.5 5" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back
+  </a>
+  <div class="wip-container">
+    <div class="wip-icon">🚧</div>
+    <div class="wip-title">Work in Progress</div>
+    <div class="wip-desc">This page is under construction.<br>Check back soon for updates and new content!</div>
+    <div class="progress-bar"><div class="progress"></div></div>
+  </div>
+  <div class="glow"></div>
+</body>
+</html> 

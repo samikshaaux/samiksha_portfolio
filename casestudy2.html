@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study - Samiksha Lokhande</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #FF6B35;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 100px;
+            left: 2rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #FF6B35;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 107, 53, 0.2);
+            transform: translateX(-5px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Case Study Header */
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .case-study-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .case-study-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .case-study-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .case-study-tag {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Case Study Content */
+        .case-study-content {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .case-study-embed {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .case-study-embed img,
+        .case-study-embed embed {
+            width: 100%;
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+                margin-top: 70px;
+            }
+
+            .back-button {
+                top: 80px;
+                left: 1rem;
+            }
+
+            .case-study-title {
+                font-size: 2.5rem;
+            }
+
+            .case-study-subtitle {
+                font-size: 1rem;
+            }
+
+            .case-study-tags {
+                gap: 0.5rem;
+            }
+ 
+            .case-study-tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 1rem;
+            }
+        }
+     /* Custom Cursor Styles */
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: #ff6b35;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.1s ease;
+      }
+
+      .cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #ff6b35;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+      }
+
+      .cursor-trail {
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 107, 53, 0.6);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9997;
+        transition: all 0.1s ease;
+      }
+
+      /* Hover Effects */
+      .cursor-dot.hover {
+        transform: scale(1.5);
+        background: #ff8a65;
+      }
+
+      .cursor-ring.hover {
+        transform: scale(1.5);
+        border-color: #ff8a65;
+        opacity: 0.9;
+      }
+
+      /* Click Animation */
+      .cursor-dot.click {
+        transform: scale(0.8);
+        background: #e55a2b;
+      }
+
+      .cursor-ring.click {
+        transform: scale(0.8);
+        border-color: #e55a2b;
+      }
+
+      /* Hide default cursor on desktop */
+      body {
+        cursor: none;
+      }
+
+      /* Show default cursor on mobile */
+      @media (max-width: 768px) {
+        body {
+          cursor: auto;
+        }
+
+        .cursor-dot,
+        .cursor-ring,
+        .cursor-trail {
+          display: none;
+        }
+      }
+    </style>
+    <script>
+      // Custom Cursor Animation
+      class CustomCursor {
+        constructor() {
+          this.cursorDot = document.querySelector(".cursor-dot");
+          this.cursorRing = document.querySelector(".cursor-ring");
+          this.cursorTrail = document.querySelector(".cursor-trail");
+
+          this.mouseX = 0;
+          this.mouseY = 0;
+          this.ringX = 0;
+          this.ringY = 0;
+          this.trailX = 0;
+          this.trailY = 0;
+
+          this.init();
+        }
+
+        init() {
+          if (window.innerWidth <= 768) {
+            document.body.style.cursor = "auto";
+            this.cursorDot.style.display = "none";
+            this.cursorRing.style.display = "none";
+            this.cursorTrail.style.display = "none";
+            return;
+          }
+
+          this.bindEvents();
+          this.animate();
+        }
+
+        bindEvents() {
+          document.addEventListener("mousemove", (e) => {
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+          });
+
+          document.addEventListener("mouseenter", () => {
+            this.cursorDot.style.opacity = "1";
+            this.cursorRing.style.opacity = "0.7";
+          });
+
+          document.addEventListener("mouseleave", () => {
+            this.cursorDot.style.opacity = "0";
+            this.cursorRing.style.opacity = "0";
+          });
+
+          document.addEventListener("mousedown", () => {
+            this.cursorDot.classList.add("click");
+            this.cursorRing.classList.add("click");
+          });
+
+          document.addEventListener("mouseup", () => {
+            this.cursorDot.classList.remove("click");
+            this.cursorRing.classList.remove("click");
+          });
+
+          const interactiveElements = document.querySelectorAll(
+            "a, button, .btn, .project-card, .nav-links a"
+          );
+
+          interactiveElements.forEach((element) => {
+            element.addEventListener("mouseenter", () => {
+              this.cursorDot.classList.add("hover");
+              this.cursorRing.classList.add("hover");
+            });
+
+            element.addEventListener("mouseleave", () => {
+              this.cursorDot.classList.remove("hover");
+              this.cursorRing.classList.remove("hover");
+            });
+          });
+        }
+
+        animate() {
+          this.ringX += (this.mouseX - this.ringX) * 0.1;
+          this.ringY += (this.mouseY - this.ringY) * 0.1;
+
+          this.trailX += (this.mouseX - this.trailX) * 0.05;
+          this.trailY += (this.mouseY - this.trailY) * 0.05;
+
+          this.cursorDot.style.left = this.mouseX + "px";
+          this.cursorDot.style.top = this.mouseY + "px";
+
+          this.cursorRing.style.left = this.ringX + "px";
+          this.cursorRing.style.top = this.ringY + "px";
+
+          this.cursorTrail.style.left = this.trailX + "px";
+          this.cursorTrail.style.top = this.trailY + "px";
+
+          if (
+            Math.abs(this.mouseX - this.trailX) > 1 ||
+            Math.abs(this.mouseY - this.trailY) > 1
+          ) {
+            this.cursorTrail.style.opacity = "0.6";
+          } else {
+            this.cursorTrail.style.opacity = "0";
+          }
+
+          requestAnimationFrame(() => this.animate());
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        new CustomCursor();
+      });
+    </script>
+  </head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-trail"></div>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="Home.html" class="nav-logo">SL</a>
+            <ul class="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Aboutme.html">About</a></li>
+                <li><a href="work-page.html" class="active">Work</a></li>
+                <li><a href="contactme.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Back Button -->
+    <a href="Project page.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back
+    </a>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Case Study Header -->
+        <header class="case-study-header">
+            <h1 class="case-study-title">Mahindra Sales Assistant (BEV)</h1>
+            <p class="case-study-subtitle">A brief description of the project's impact and focus, highlighting the key achievements and outcomes.</p>
+            <div class="case-study-tags">
+                <span class="case-study-tag">Design Thinking</span>
+                <span class="case-study-tag">Conversational Interfaces</span>
+                <span class="case-study-tag">UI Design</span>
+            </div>
+        </header>
+
+        <!-- Case Study Content -->
+        <div class="case-study-content">
+            <div class="case-study-embed">
+                <!-- Replace with your case study image or PDF -->
+                <img src="MSA BEV.png" alt="Case Study" />
+                <!-- Or use PDF embed -->
+                <!-- <embed src="path/to/your-case-study.pdf" width="100%" height="1000px" type="application/pdf" /> -->
+            </div>
+        </div>
+        </main>
+
+        <!-- footer -->
+        <footer class="footer">
+    <div class="footer-content">
+      <h3>Let's work together</h3>
+      <p>I'm always interested in new opportunities and exciting projects. Let's discuss how we can create something amazing together.</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/samiksha-lokhande" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a onclick="copyEmail()" style="cursor: pointer;" title="Click to copy email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+    <script>
+  function copyEmail() {
+    navigator.clipboard.writeText("samikshaalokhande@gmail.com");
+    alert("Email copied to clipboard!");
+  }
+</script>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(250, 250, 250, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(250, 250, 250, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
